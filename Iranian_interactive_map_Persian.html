@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ac060b9ccf99a8f00f713e0feed56870 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+</head>
+<body>
+    
+    
+<div style="position: fixed; top: 10px; right: 10px; z-index: 1000; background-color: white; 
+            padding: 8px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-family: Tahoma, sans-serif; font-size: 14px; font-weight: bold; text-align: right;">
+    🗺️ نقشهٔ زبان‌های ایرانی — <span style="color: #2c3e50;">نسخهٔ آفلاین</span>
+</div>
+    
+<div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; background-color: white;
+            padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-family: Tahoma, sans-serif; font-size: 11px; max-width: 180px; text-align: right;">
+    <b>📖 گروه‌های زبانی</b><br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:red; border-radius:50%;"></span> فارسی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:blue; border-radius:50%;"></span> پشتو<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:green; border-radius:50%;"></span> کردی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:purple; border-radius:50%;"></span> بلوچی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:orange; border-radius:50%;"></span> آسی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:darkred; border-radius:50%;"></span> کاسپین<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:cadetblue; border-radius:50%;"></span> لری<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:pink; border-radius:50%;"></span> پامیری<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:lightgreen; border-radius:50%;"></span> تالشی/تاتی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:lightblue; border-radius:50%;"></span> کمزاری/یغنابی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:beige; border-radius:50%;"></span> سیوندی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:darkorange; border-radius:50%;"></span> پراچی<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:gray; border-radius:50%;"></span> اورمری/گورانی<br>
+    <hr style="margin:5px 0;">
+    <i>📡 نسخهٔ آفلاین</i>
+</div>
+    
+<div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; 
+            background-color: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 6px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-family: Tahoma, sans-serif; 
+            font-size: 11px; color: white; white-space: nowrap; text-align: center;">
+    🗺️ تدوین شده توسط میلاد شریعتمداری
+</div>
+    
+            <div class="folium-map" id="map_ac060b9ccf99a8f00f713e0feed56870" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ac060b9ccf99a8f00f713e0feed56870 = L.map(
+                "map_ac060b9ccf99a8f00f713e0feed56870",
+                {
+                    center: [35.0, 55.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+
+            
+
+        
+    
+            var tile_layer_9cd3caca4baf98044f62e57a733650cb = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_9cd3caca4baf98044f62e57a733650cb.addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+            var circle_marker_7da2e0026536ea6b81f445f01b38b735 = L.circleMarker(
+                [32.4279, 53.688],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_38d1a5b392f4eb1f6d71d4362956259b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ab5f15115d699195d65a473d6b8ede02 = $(`<div id="html_ab5f15115d699195d65a473d6b8ede02" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:red">             🗣️ فارسی         </h3>          <b>📍 منطقه:</b> ایران<br>         <b>👥 گویشوران:</b> حدود ۷۰ میلیون بومی، ۱۱۰ میلیون در مجموع<br>         <b>✍️ خط:</b> فارسی-عربی، سیریلیک<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             فارسی یکی از زبان‌های ایرانی شاخهٔ جنوب‌غربی است که عمدتاً در ایران، افغانستان و تاجیکستان صحبت می‌شود. این زبان حدود ۷۰ میلیون گویشور بومی و بیش از ۱۱۰ میلیون گویشور در مجموع دارد.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_فارسی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_38d1a5b392f4eb1f6d71d4362956259b.setContent(html_ab5f15115d699195d65a473d6b8ede02);
+            
+        
+
+        circle_marker_7da2e0026536ea6b81f445f01b38b735.bindPopup(popup_38d1a5b392f4eb1f6d71d4362956259b)
+        ;
+
+        
+    
+    
+            circle_marker_7da2e0026536ea6b81f445f01b38b735.bindTooltip(
+                `<div>
+                     فارسی — ایران
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3120b7c68cd0a6db3adbff6d2439e98f = L.circleMarker(
+                [33.9391, 67.71],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_e859f421e6369a5be28cd34648eb6ced = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f1070f8832276ddaca0ed63ff4df23a5 = $(`<div id="html_f1070f8832276ddaca0ed63ff4df23a5" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:red">             🗣️ دری         </h3>          <b>📍 منطقه:</b> افغانستان<br>         <b>👥 گویشوران:</b> حدود ۹٫۶ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             دری گونهٔ افغانستانی زبان فارسی است و یکی از دو زبان رسمی افغانستان محسوب می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/دری" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_e859f421e6369a5be28cd34648eb6ced.setContent(html_f1070f8832276ddaca0ed63ff4df23a5);
+            
+        
+
+        circle_marker_3120b7c68cd0a6db3adbff6d2439e98f.bindPopup(popup_e859f421e6369a5be28cd34648eb6ced)
+        ;
+
+        
+    
+    
+            circle_marker_3120b7c68cd0a6db3adbff6d2439e98f.bindTooltip(
+                `<div>
+                     دری — افغانستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_16e1861a1c2bc57caa9d43d04eeed32c = L.circleMarker(
+                [38.861, 71.2761],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_b093ddd0defcb62721291a3a059a9906 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_59b1dee9deb04c38bc90c7195c86764a = $(`<div id="html_59b1dee9deb04c38bc90c7195c86764a" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:red">             🗣️ تاجیکی         </h3>          <b>📍 منطقه:</b> تاجیکستان<br>         <b>👥 گویشوران:</b> حدود ۸ میلیون<br>         <b>✍️ خط:</b> سیریلیک<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             تاجیکی گونه‌ای از فارسی است که در تاجیکستان و ازبکستان صحبت می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_تاجیکی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_b093ddd0defcb62721291a3a059a9906.setContent(html_59b1dee9deb04c38bc90c7195c86764a);
+            
+        
+
+        circle_marker_16e1861a1c2bc57caa9d43d04eeed32c.bindPopup(popup_b093ddd0defcb62721291a3a059a9906)
+        ;
+
+        
+    
+    
+            circle_marker_16e1861a1c2bc57caa9d43d04eeed32c.bindTooltip(
+                `<div>
+                     تاجیکی — تاجیکستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6e95cac7bbed6ba232e84760a43d36b2 = L.circleMarker(
+                [33.0, 68.0],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_808649fc518d8cfc36f5ef7ccf7a7daf = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2e171aa6060baf80e254b3e0730ccfca = $(`<div id="html_2e171aa6060baf80e254b3e0730ccfca" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:blue">             🗣️ پشتو         </h3>          <b>📍 منطقه:</b> افغانستان<br>         <b>👥 گویشوران:</b> حدود ۴۰ تا ۶۰ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             پشتو یکی از زبان‌های ایرانی شرقی و از زبان‌های رسمی افغانستان است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_پشتو" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_808649fc518d8cfc36f5ef7ccf7a7daf.setContent(html_2e171aa6060baf80e254b3e0730ccfca);
+            
+        
+
+        circle_marker_6e95cac7bbed6ba232e84760a43d36b2.bindPopup(popup_808649fc518d8cfc36f5ef7ccf7a7daf)
+        ;
+
+        
+    
+    
+            circle_marker_6e95cac7bbed6ba232e84760a43d36b2.bindTooltip(
+                `<div>
+                     پشتو — افغانستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d997ed47ae36dfc01b8509a132ac7112 = L.circleMarker(
+                [34.0, 71.5],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_e2dc66b596ffb8131c5de3b8a85d945d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5b94fd4aa4968d96e9283e9af9eed5ab = $(`<div id="html_5b94fd4aa4968d96e9283e9af9eed5ab" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:blue">             🗣️ پشتو         </h3>          <b>📍 منطقه:</b> پاکستان<br>         <b>👥 گویشوران:</b> حدود ۴۰ تا ۶۰ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             پشتو در افغانستان و پاکستان رایج است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_پشتو" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_e2dc66b596ffb8131c5de3b8a85d945d.setContent(html_5b94fd4aa4968d96e9283e9af9eed5ab);
+            
+        
+
+        circle_marker_d997ed47ae36dfc01b8509a132ac7112.bindPopup(popup_e2dc66b596ffb8131c5de3b8a85d945d)
+        ;
+
+        
+    
+    
+            circle_marker_d997ed47ae36dfc01b8509a132ac7112.bindTooltip(
+                `<div>
+                     پشتو — پاکستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8faf647dba285e44ea014eadea4dbcf6 = L.circleMarker(
+                [37.5, 42.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_ce852def455287393a7a7f99f1bb602d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_789839975fdf39616746b711051a3046 = $(`<div id="html_789839975fdf39616746b711051a3046" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:green">             🗣️ کرمانجی         </h3>          <b>📍 منطقه:</b> ترکیه / سوریه / عراق / ایران<br>         <b>👥 گویشوران:</b> حدود ۱۵ تا ۲۰ میلیون<br>         <b>✍️ خط:</b> لاتین، فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             کرمانجی بزرگ‌ترین گویش کردی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/کرمانجی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_ce852def455287393a7a7f99f1bb602d.setContent(html_789839975fdf39616746b711051a3046);
+            
+        
+
+        circle_marker_8faf647dba285e44ea014eadea4dbcf6.bindPopup(popup_ce852def455287393a7a7f99f1bb602d)
+        ;
+
+        
+    
+    
+            circle_marker_8faf647dba285e44ea014eadea4dbcf6.bindTooltip(
+                `<div>
+                     کرمانجی — ترکیه / سوریه / عراق / ایران
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b2a3b3fd3fb1bc06939d01a48dc34068 = L.circleMarker(
+                [35.5, 45.5],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_9b811da424737d2eec9950e77296cf89 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_71acfb6ab0157714791d0b1f10e03bd2 = $(`<div id="html_71acfb6ab0157714791d0b1f10e03bd2" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:green">             🗣️ سورانی         </h3>          <b>📍 منطقه:</b> عراق / ایران<br>         <b>👥 گویشوران:</b> حدود ۶ تا ۸ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             سورانی یا کردی مرکزی در کردستان عراق و ایران صحبت می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/کردی_سورانی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_9b811da424737d2eec9950e77296cf89.setContent(html_71acfb6ab0157714791d0b1f10e03bd2);
+            
+        
+
+        circle_marker_b2a3b3fd3fb1bc06939d01a48dc34068.bindPopup(popup_9b811da424737d2eec9950e77296cf89)
+        ;
+
+        
+    
+    
+            circle_marker_b2a3b3fd3fb1bc06939d01a48dc34068.bindTooltip(
+                `<div>
+                     سورانی — عراق / ایران
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_56d5ee3187c52b44fb35e5e677478a66 = L.circleMarker(
+                [34.3, 47.1],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_13bdc3a5852262f32072783b7a1abb8c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e46fa0d57d2f5bf4a25db83db607ca62 = $(`<div id="html_e46fa0d57d2f5bf4a25db83db607ca62" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:green">             🗣️ کردی جنوبی         </h3>          <b>📍 منطقه:</b> ایران<br>         <b>👥 گویشوران:</b> حدود ۳ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             کردی جنوبی در غرب ایران و شرق عراق رایج است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/کردی_جنوبی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_13bdc3a5852262f32072783b7a1abb8c.setContent(html_e46fa0d57d2f5bf4a25db83db607ca62);
+            
+        
+
+        circle_marker_56d5ee3187c52b44fb35e5e677478a66.bindPopup(popup_13bdc3a5852262f32072783b7a1abb8c)
+        ;
+
+        
+    
+    
+            circle_marker_56d5ee3187c52b44fb35e5e677478a66.bindTooltip(
+                `<div>
+                     کردی جنوبی — ایران
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_850f5f09f1a1525fe60494bccebe3c6b = L.circleMarker(
+                [27.5, 60.5],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_b1f193446de31b38299d11209f8bc8fd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_75f62569f2dc65516ca4af9d46b757ec = $(`<div id="html_75f62569f2dc65516ca4af9d46b757ec" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:purple">             🗣️ بلوچی         </h3>          <b>📍 منطقه:</b> ایران<br>         <b>👥 گویشوران:</b> حدود ۸ تا ۱۰ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             بلوچی یکی از زبان‌های ایرانی شمال‌غربی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_بلوچی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_b1f193446de31b38299d11209f8bc8fd.setContent(html_75f62569f2dc65516ca4af9d46b757ec);
+            
+        
+
+        circle_marker_850f5f09f1a1525fe60494bccebe3c6b.bindPopup(popup_b1f193446de31b38299d11209f8bc8fd)
+        ;
+
+        
+    
+    
+            circle_marker_850f5f09f1a1525fe60494bccebe3c6b.bindTooltip(
+                `<div>
+                     بلوچی — ایران
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a72b94b2bf90aded1116e53a54c427e = L.circleMarker(
+                [28.0, 66.0],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_5d81ad3babb3bbdb494509cc7e7b150d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_58290a145a8a1a77f1a49c9156c08ad8 = $(`<div id="html_58290a145a8a1a77f1a49c9156c08ad8" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:purple">             🗣️ بلوچی         </h3>          <b>📍 منطقه:</b> پاکستان<br>         <b>👥 گویشوران:</b> حدود ۸ تا ۱۰ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             بلوچی در پاکستان نیز رایج است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_بلوچی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_5d81ad3babb3bbdb494509cc7e7b150d.setContent(html_58290a145a8a1a77f1a49c9156c08ad8);
+            
+        
+
+        circle_marker_4a72b94b2bf90aded1116e53a54c427e.bindPopup(popup_5d81ad3babb3bbdb494509cc7e7b150d)
+        ;
+
+        
+    
+    
+            circle_marker_4a72b94b2bf90aded1116e53a54c427e.bindTooltip(
+                `<div>
+                     بلوچی — پاکستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f41d3dce807a24a42274461bbaf86fc1 = L.circleMarker(
+                [31.0, 62.0],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_a8c40ff9ecef34ac7611d87c7ea0de3f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a930c2bc290ac42087976d7212dbac9d = $(`<div id="html_a930c2bc290ac42087976d7212dbac9d" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:purple">             🗣️ بلوچی         </h3>          <b>📍 منطقه:</b> افغانستان<br>         <b>👥 گویشوران:</b> حدود ۸ تا ۱۰ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             بلوچی در افغانستان نیز صحبت می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_بلوچی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_a8c40ff9ecef34ac7611d87c7ea0de3f.setContent(html_a930c2bc290ac42087976d7212dbac9d);
+            
+        
+
+        circle_marker_f41d3dce807a24a42274461bbaf86fc1.bindPopup(popup_a8c40ff9ecef34ac7611d87c7ea0de3f)
+        ;
+
+        
+    
+    
+            circle_marker_f41d3dce807a24a42274461bbaf86fc1.bindTooltip(
+                `<div>
+                     بلوچی — افغانستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abf9b13fcab1e711a5cc4fe682c2e7e4 = L.circleMarker(
+                [36.3, 49.6],
+                {"bubblingMouseEvents": true, "color": "lightgreen", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_f0b190fe2612fb3453373e2bfa901148 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1c3319cbb4a0b5afee494469cdd69743 = $(`<div id="html_1c3319cbb4a0b5afee494469cdd69743" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:lightgreen">             🗣️ تاتی (تاکستانی)         </h3>          <b>📍 منطقه:</b> ایران (تاکستان، خلخال، طارم)<br>         <b>👥 گویشوران:</b> حدود ۳۰۰ هزار<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             تاتی یکی از زبان‌های ایرانی شمال‌غربی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_تاتی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_f0b190fe2612fb3453373e2bfa901148.setContent(html_1c3319cbb4a0b5afee494469cdd69743);
+            
+        
+
+        circle_marker_abf9b13fcab1e711a5cc4fe682c2e7e4.bindPopup(popup_f0b190fe2612fb3453373e2bfa901148)
+        ;
+
+        
+    
+    
+            circle_marker_abf9b13fcab1e711a5cc4fe682c2e7e4.bindTooltip(
+                `<div>
+                     تاتی (تاکستانی) — ایران (تاکستان، خلخال، طارم)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c6d8a63887f84af5509049324c720202 = L.circleMarker(
+                [38.2, 45.7],
+                {"bubblingMouseEvents": true, "color": "lightgreen", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_5334a16137db69140bf815891df34557 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4d6753570262179b075a0ed47fb3cced = $(`<div id="html_4d6753570262179b075a0ed47fb3cced" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:lightgreen">             🗣️ تاتی (هرزندی)         </h3>          <b>📍 منطقه:</b> ایران (هرزند، کلاسور)<br>         <b>👥 گویشوران:</b> حدود ۵۰ هزار<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             هرزندی یکی از گویش‌های تاتی در آذربایجان شرقی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_هرزندی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_5334a16137db69140bf815891df34557.setContent(html_4d6753570262179b075a0ed47fb3cced);
+            
+        
+
+        circle_marker_c6d8a63887f84af5509049324c720202.bindPopup(popup_5334a16137db69140bf815891df34557)
+        ;
+
+        
+    
+    
+            circle_marker_c6d8a63887f84af5509049324c720202.bindTooltip(
+                `<div>
+                     تاتی (هرزندی) — ایران (هرزند، کلاسور)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4d0ab0528f05814e072da1f5fee1d334 = L.circleMarker(
+                [30.0, 52.9],
+                {"bubblingMouseEvents": true, "color": "beige", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "beige", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_4a3b79f825c2e8e6610d851847814e70 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f4d4bbf8de17f3c5844efda83f6f8ff7 = $(`<div id="html_f4d4bbf8de17f3c5844efda83f6f8ff7" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:beige">             🗣️ سیوندی         </h3>          <b>📍 منطقه:</b> ایران (سیوند، فارس)<br>         <b>👥 گویشوران:</b> حدود ۷ هزار<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             سیوندی زبانی ایرانی در استان فارس است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_سیوندی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_4a3b79f825c2e8e6610d851847814e70.setContent(html_f4d4bbf8de17f3c5844efda83f6f8ff7);
+            
+        
+
+        circle_marker_4d0ab0528f05814e072da1f5fee1d334.bindPopup(popup_4a3b79f825c2e8e6610d851847814e70)
+        ;
+
+        
+    
+    
+            circle_marker_4d0ab0528f05814e072da1f5fee1d334.bindTooltip(
+                `<div>
+                     سیوندی — ایران (سیوند، فارس)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_040c711a20842042c03afd962ba97b44 = L.circleMarker(
+                [26.1, 56.2],
+                {"bubblingMouseEvents": true, "color": "lightblue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightblue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_54d7276e68cb535e4f616744b1c90af9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_597612e6db64fcf65aa98a7445d4fb59 = $(`<div id="html_597612e6db64fcf65aa98a7445d4fb59" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:lightblue">             🗣️ کمزاری         </h3>          <b>📍 منطقه:</b> عمان (شبه‌جزیره مسندم)<br>         <b>👥 گویشوران:</b> حدود ۴ هزار<br>         <b>✍️ خط:</b> لاتین، فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             کمزاری تنها زبان ایرانی رایج در شبه‌جزیره عربستان است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_کمزاری" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_54d7276e68cb535e4f616744b1c90af9.setContent(html_597612e6db64fcf65aa98a7445d4fb59);
+            
+        
+
+        circle_marker_040c711a20842042c03afd962ba97b44.bindPopup(popup_54d7276e68cb535e4f616744b1c90af9)
+        ;
+
+        
+    
+    
+            circle_marker_040c711a20842042c03afd962ba97b44.bindTooltip(
+                `<div>
+                     کمزاری — عمان (شبه‌جزیره مسندم)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_649d8cf60b733ad5bed07abc6ad8b096 = L.circleMarker(
+                [37.5, 71.5],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_e0c04bee8cd554bcde3b9cc1e33842b1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_26d260d7fea08f583c3e824e50728ba6 = $(`<div id="html_26d260d7fea08f583c3e824e50728ba6" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:pink">             🗣️ شغنی         </h3>          <b>📍 منطقه:</b> تاجیکستان (بدخشان)<br>         <b>👥 گویشوران:</b> حدود ۸۰ هزار<br>         <b>✍️ خط:</b> سیریلیک، لاتین<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             شغنی یکی از زبان‌های پامیری شاخهٔ ایرانی شرقی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_شغنی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_e0c04bee8cd554bcde3b9cc1e33842b1.setContent(html_26d260d7fea08f583c3e824e50728ba6);
+            
+        
+
+        circle_marker_649d8cf60b733ad5bed07abc6ad8b096.bindPopup(popup_e0c04bee8cd554bcde3b9cc1e33842b1)
+        ;
+
+        
+    
+    
+            circle_marker_649d8cf60b733ad5bed07abc6ad8b096.bindTooltip(
+                `<div>
+                     شغنی — تاجیکستان (بدخشان)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9a739df50102956af77c7a4d50b8b23 = L.circleMarker(
+                [37.0, 70.5],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_302f519c0e20c826de21186956d1cfd0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3eb487dbff7a591c4cabff0b2b26c480 = $(`<div id="html_3eb487dbff7a591c4cabff0b2b26c480" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:pink">             🗣️ شغنی         </h3>          <b>📍 منطقه:</b> افغانستان (بدخشان)<br>         <b>👥 گویشوران:</b> حدود ۸۰ هزار<br>         <b>✍️ خط:</b> سیریلیک، لاتین<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             شغنی در کوهستان‌های پامیر صحبت می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_شغنی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_302f519c0e20c826de21186956d1cfd0.setContent(html_3eb487dbff7a591c4cabff0b2b26c480);
+            
+        
+
+        circle_marker_f9a739df50102956af77c7a4d50b8b23.bindPopup(popup_302f519c0e20c826de21186956d1cfd0)
+        ;
+
+        
+    
+    
+            circle_marker_f9a739df50102956af77c7a4d50b8b23.bindTooltip(
+                `<div>
+                     شغنی — افغانستان (بدخشان)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21fe932a262e324be878c4ea143243ed = L.circleMarker(
+                [32.7, 69.0],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_068a44e5f70b114e95102071459ac1b7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c887b6188bdda21efad7562169bcf033 = $(`<div id="html_c887b6188bdda21efad7562169bcf033" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:gray">             🗣️ اورمری         </h3>          <b>📍 منطقه:</b> افغانستان<br>         <b>👥 گویشوران:</b> حدود ۱۰۰۰<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             اورمری زبانی ایرانی شرقی و شدیداً در معرض خطر است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/اورمری" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_068a44e5f70b114e95102071459ac1b7.setContent(html_c887b6188bdda21efad7562169bcf033);
+            
+        
+
+        circle_marker_21fe932a262e324be878c4ea143243ed.bindPopup(popup_068a44e5f70b114e95102071459ac1b7)
+        ;
+
+        
+    
+    
+            circle_marker_21fe932a262e324be878c4ea143243ed.bindTooltip(
+                `<div>
+                     اورمری — افغانستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_29572a98e2e70528180ebe94745f7365 = L.circleMarker(
+                [32.5, 70.0],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_9a05b75852f51e479c5381381e92bd60 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2f5c50509bd2adaf8de400931ad4a420 = $(`<div id="html_2f5c50509bd2adaf8de400931ad4a420" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:gray">             🗣️ اورمری         </h3>          <b>📍 منطقه:</b> پاکستان<br>         <b>👥 گویشوران:</b> حدود ۱۰۰۰<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             اورمری در وزیرستان نیز صحبت می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/اورمری" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_9a05b75852f51e479c5381381e92bd60.setContent(html_2f5c50509bd2adaf8de400931ad4a420);
+            
+        
+
+        circle_marker_29572a98e2e70528180ebe94745f7365.bindPopup(popup_9a05b75852f51e479c5381381e92bd60)
+        ;
+
+        
+    
+    
+            circle_marker_29572a98e2e70528180ebe94745f7365.bindTooltip(
+                `<div>
+                     اورمری — پاکستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bb006bc99742715fa0c920d253d0fc17 = L.circleMarker(
+                [35.0, 69.5],
+                {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkorange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_99e86d339279fc87d5a725c0640a0dad = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ade5536341d4cfa2cff06a82e1fc8467 = $(`<div id="html_ade5536341d4cfa2cff06a82e1fc8467" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:darkorange">             🗣️ پراچی         </h3>          <b>📍 منطقه:</b> افغانستان (هندوکش)<br>         <b>👥 گویشوران:</b> حدود ۳۵۰۰ تا ۶۰۰۰<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             پراچی زبانی ایرانی شرقی در افغانستان است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_پراچی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_99e86d339279fc87d5a725c0640a0dad.setContent(html_ade5536341d4cfa2cff06a82e1fc8467);
+            
+        
+
+        circle_marker_bb006bc99742715fa0c920d253d0fc17.bindPopup(popup_99e86d339279fc87d5a725c0640a0dad)
+        ;
+
+        
+    
+    
+            circle_marker_bb006bc99742715fa0c920d253d0fc17.bindTooltip(
+                `<div>
+                     پراچی — افغانستان (هندوکش)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_32c3e5ba3e080bcfab53e28055b86f5a = L.circleMarker(
+                [34.6, 69.0],
+                {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkorange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_c9c2a82ec6180f3a92954a0c36a92842 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_489528fbd0ea4dd73a9b6fbd3c606794 = $(`<div id="html_489528fbd0ea4dd73a9b6fbd3c606794" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:darkorange">             🗣️ پراچی         </h3>          <b>📍 منطقه:</b> افغانستان (پغمان)<br>         <b>👥 گویشوران:</b> حدود ۳۵۰۰ تا ۶۰۰۰<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             پراچی زبانی در معرض خطر است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_پراچی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_c9c2a82ec6180f3a92954a0c36a92842.setContent(html_489528fbd0ea4dd73a9b6fbd3c606794);
+            
+        
+
+        circle_marker_32c3e5ba3e080bcfab53e28055b86f5a.bindPopup(popup_c9c2a82ec6180f3a92954a0c36a92842)
+        ;
+
+        
+    
+    
+            circle_marker_32c3e5ba3e080bcfab53e28055b86f5a.bindTooltip(
+                `<div>
+                     پراچی — افغانستان (پغمان)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_210c7aeda478b6fd4588d9391bcfcbeb = L.circleMarker(
+                [42.8, 44.2],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_18b57a55630c880ac77e7f57f6684190 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1c2b287b92c2e97f70fa7254756f64f3 = $(`<div id="html_1c2b287b92c2e97f70fa7254756f64f3" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:orange">             🗣️ آسی         </h3>          <b>📍 منطقه:</b> اوستیا<br>         <b>👥 گویشوران:</b> حدود ۶۰۰ هزار<br>         <b>✍️ خط:</b> سیریلیک<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             آسی زبانی ایرانی شرقی در قفقاز است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_آسی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_18b57a55630c880ac77e7f57f6684190.setContent(html_1c2b287b92c2e97f70fa7254756f64f3);
+            
+        
+
+        circle_marker_210c7aeda478b6fd4588d9391bcfcbeb.bindPopup(popup_18b57a55630c880ac77e7f57f6684190)
+        ;
+
+        
+    
+    
+            circle_marker_210c7aeda478b6fd4588d9391bcfcbeb.bindTooltip(
+                `<div>
+                     آسی — اوستیا
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9f708796c79f4fef11590aab76ce67c = L.circleMarker(
+                [36.5, 52.0],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_d6ccb7aca9abbfff67f54ce04d56aef1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5a6ebe11f36f24d563b725d19b6992b1 = $(`<div id="html_5a6ebe11f36f24d563b725d19b6992b1" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:darkred">             🗣️ مازندرانی         </h3>          <b>📍 منطقه:</b> مازندران<br>         <b>👥 گویشوران:</b> حدود ۲ تا ۳ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             مازندرانی از زبان‌های کرانهٔ خزر است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_مازندرانی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_d6ccb7aca9abbfff67f54ce04d56aef1.setContent(html_5a6ebe11f36f24d563b725d19b6992b1);
+            
+        
+
+        circle_marker_f9f708796c79f4fef11590aab76ce67c.bindPopup(popup_d6ccb7aca9abbfff67f54ce04d56aef1)
+        ;
+
+        
+    
+    
+            circle_marker_f9f708796c79f4fef11590aab76ce67c.bindTooltip(
+                `<div>
+                     مازندرانی — مازندران
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_667f31d9007e1476961abd7a2fe54425 = L.circleMarker(
+                [37.2, 49.6],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_4b46145073e6e0d9ed9f865605ffd45b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0737c2033a787c7500a11f2a56de9928 = $(`<div id="html_0737c2033a787c7500a11f2a56de9928" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:darkred">             🗣️ گیلکی         </h3>          <b>📍 منطقه:</b> گیلان<br>         <b>👥 گویشوران:</b> حدود ۲٫۵ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             گیلکی در استان گیلان صحبت می‌شود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_گیلکی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_4b46145073e6e0d9ed9f865605ffd45b.setContent(html_0737c2033a787c7500a11f2a56de9928);
+            
+        
+
+        circle_marker_667f31d9007e1476961abd7a2fe54425.bindPopup(popup_4b46145073e6e0d9ed9f865605ffd45b)
+        ;
+
+        
+    
+    
+            circle_marker_667f31d9007e1476961abd7a2fe54425.bindTooltip(
+                `<div>
+                     گیلکی — گیلان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a88af4f51f3da3bfa8955de3cd6600d0 = L.circleMarker(
+                [33.5, 48.5],
+                {"bubblingMouseEvents": true, "color": "cadetblue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "cadetblue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_2beb238ef1ad59af08fed9c056a2b402 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_791017855b2cf435ed05c4d2865871a9 = $(`<div id="html_791017855b2cf435ed05c4d2865871a9" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:cadetblue">             🗣️ لری         </h3>          <b>📍 منطقه:</b> لرستان<br>         <b>👥 گویشوران:</b> حدود ۴ تا ۵ میلیون<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             لری یکی از زبان‌های ایرانی جنوب‌غربی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_لری" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_2beb238ef1ad59af08fed9c056a2b402.setContent(html_791017855b2cf435ed05c4d2865871a9);
+            
+        
+
+        circle_marker_a88af4f51f3da3bfa8955de3cd6600d0.bindPopup(popup_2beb238ef1ad59af08fed9c056a2b402)
+        ;
+
+        
+    
+    
+            circle_marker_a88af4f51f3da3bfa8955de3cd6600d0.bindTooltip(
+                `<div>
+                     لری — لرستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53a33eceee8559262f73f9897f9d78e0 = L.circleMarker(
+                [38.4, 48.5],
+                {"bubblingMouseEvents": true, "color": "lightgreen", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_75139b5c4f2758716889f68dd3e8b05a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_fe74a2925efd544a138e1060b4a014ec = $(`<div id="html_fe74a2925efd544a138e1060b4a014ec" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:lightgreen">             🗣️ تالشی         </h3>          <b>📍 منطقه:</b> ایران / جمهوری آذربایجان<br>         <b>👥 گویشوران:</b> حدود ۲۰۰ تا ۵۰۰ هزار<br>         <b>✍️ خط:</b> فارسی-عربی، لاتین<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             تالشی زبانی ایرانی شمال‌غربی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_تالشی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_75139b5c4f2758716889f68dd3e8b05a.setContent(html_fe74a2925efd544a138e1060b4a014ec);
+            
+        
+
+        circle_marker_53a33eceee8559262f73f9897f9d78e0.bindPopup(popup_75139b5c4f2758716889f68dd3e8b05a)
+        ;
+
+        
+    
+    
+            circle_marker_53a33eceee8559262f73f9897f9d78e0.bindTooltip(
+                `<div>
+                     تالشی — ایران / جمهوری آذربایجان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7393c3c3014aa2546fbc785e81c27c03 = L.circleMarker(
+                [37.5, 72.0],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_0bf8b6b78145d3c901a8d2ef3477aaff = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3de1e9d2c1b55a2fc17468d215fc6ef4 = $(`<div id="html_3de1e9d2c1b55a2fc17468d215fc6ef4" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:pink">             🗣️ وخی         </h3>          <b>📍 منطقه:</b> پامیر<br>         <b>👥 گویشوران:</b> حدود ۵۰ تا ۶۰ هزار<br>         <b>✍️ خط:</b> سیریلیک، لاتین، فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             وخی یکی از زبان‌های ایرانی شرقی در دالان واخان است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_وخی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_0bf8b6b78145d3c901a8d2ef3477aaff.setContent(html_3de1e9d2c1b55a2fc17468d215fc6ef4);
+            
+        
+
+        circle_marker_7393c3c3014aa2546fbc785e81c27c03.bindPopup(popup_0bf8b6b78145d3c901a8d2ef3477aaff)
+        ;
+
+        
+    
+    
+            circle_marker_7393c3c3014aa2546fbc785e81c27c03.bindTooltip(
+                `<div>
+                     وخی — پامیر
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b6dec252c85a1d8af30425be9ebffc53 = L.circleMarker(
+                [39.2, 68.5],
+                {"bubblingMouseEvents": true, "color": "lightblue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightblue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_8d6ef86b60d2ade9ecd6433147892ccc = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9d98b9da5bbf4e6974301aa2b54b7bbf = $(`<div id="html_9d98b9da5bbf4e6974301aa2b54b7bbf" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:lightblue">             🗣️ یغنابی         </h3>          <b>📍 منطقه:</b> تاجیکستان<br>         <b>👥 گویشوران:</b> حدود ۱۲ هزار<br>         <b>✍️ خط:</b> سیریلیک، لاتین<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             یغنابی بازمانده‌ای از زبان سغدی است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_یغنابی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_8d6ef86b60d2ade9ecd6433147892ccc.setContent(html_9d98b9da5bbf4e6974301aa2b54b7bbf);
+            
+        
+
+        circle_marker_b6dec252c85a1d8af30425be9ebffc53.bindPopup(popup_8d6ef86b60d2ade9ecd6433147892ccc)
+        ;
+
+        
+    
+    
+            circle_marker_b6dec252c85a1d8af30425be9ebffc53.bindTooltip(
+                `<div>
+                     یغنابی — تاجیکستان
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_683dd08c3705371e6d0fd538981a7fe7 = L.circleMarker(
+                [38.7, 39.8],
+                {"bubblingMouseEvents": true, "color": "darkpurple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkpurple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_6a3c140fbb13cedd1a20b2a1ff12186b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e60559ae757eb8a823183cf0c01e0a2c = $(`<div id="html_e60559ae757eb8a823183cf0c01e0a2c" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:darkpurple">             🗣️ زازاکی         </h3>          <b>📍 منطقه:</b> آناتولی شرقی<br>         <b>👥 گویشوران:</b> حدود ۲ تا ۳ میلیون<br>         <b>✍️ خط:</b> لاتین<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             زازاکی زبانی ایرانی شمال‌غربی در شرق ترکیه است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زازاکی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_6a3c140fbb13cedd1a20b2a1ff12186b.setContent(html_e60559ae757eb8a823183cf0c01e0a2c);
+            
+        
+
+        circle_marker_683dd08c3705371e6d0fd538981a7fe7.bindPopup(popup_6a3c140fbb13cedd1a20b2a1ff12186b)
+        ;
+
+        
+    
+    
+            circle_marker_683dd08c3705371e6d0fd538981a7fe7.bindTooltip(
+                `<div>
+                     زازاکی — آناتولی شرقی
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15eecfe282033f9bb69da3f7fa309143 = L.circleMarker(
+                [35.0, 46.0],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_45bbb462802be788415521a984694054 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_46102b907f2a8ddab8970c685e11f5a9 = $(`<div id="html_46102b907f2a8ddab8970c685e11f5a9" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:gray">             🗣️ گورانی         </h3>          <b>📍 منطقه:</b> ایران / عراق<br>         <b>👥 گویشوران:</b> حدود ۲۰۰ تا ۳۰۰ هزار<br>         <b>✍️ خط:</b> فارسی-عربی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             گورانی در منطقهٔ هورامان رایج است.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_گورانی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_45bbb462802be788415521a984694054.setContent(html_46102b907f2a8ddab8970c685e11f5a9);
+            
+        
+
+        circle_marker_15eecfe282033f9bb69da3f7fa309143.bindPopup(popup_45bbb462802be788415521a984694054)
+        ;
+
+        
+    
+    
+            circle_marker_15eecfe282033f9bb69da3f7fa309143.bindTooltip(
+                `<div>
+                     گورانی — ایران / عراق
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_150c4dd55d69620b5bf7b379c6009784 = L.circleMarker(
+                [39.6, 66.9],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "black", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_ac060b9ccf99a8f00f713e0feed56870);
+        
+    
+        var popup_01f1c6843f21e990b4c841fb45fb5308 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4f98386f0c1e458f0f4399157cac0d99 = $(`<div id="html_4f98386f0c1e458f0f4399157cac0d99" style="width: 100.0%; height: 100.0%;">     <div style="     font-family:Tahoma;     width:320px;     direction:rtl;     text-align:right;     ">          <h3 style="color:black">             🗣️ سغدی (تاریخی)         </h3>          <b>📍 منطقه:</b> آسیای مرکزی<br>         <b>👥 گویشوران:</b> منقرض‌شده<br>         <b>✍️ خط:</b> سغدی، سریانی، مانوی<br>          <hr>          <div style="font-size:13px; line-height:1.7;">             سغدی زبانی ایرانی شرقی باستان بود.         </div>          <hr>          <a href="https://fa.wikipedia.org/wiki/زبان_سغدی" target="_blank">             🔗 مقالهٔ ویکی‌پدیای فارسی         </a>      </div>     </div>`)[0];
+                popup_01f1c6843f21e990b4c841fb45fb5308.setContent(html_4f98386f0c1e458f0f4399157cac0d99);
+            
+        
+
+        circle_marker_150c4dd55d69620b5bf7b379c6009784.bindPopup(popup_01f1c6843f21e990b4c841fb45fb5308)
+        ;
+
+        
+    
+    
+            circle_marker_150c4dd55d69620b5bf7b379c6009784.bindTooltip(
+                `<div>
+                     سغدی (تاریخی) — آسیای مرکزی
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
