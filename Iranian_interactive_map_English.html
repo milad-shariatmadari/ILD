@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4dd148d7200f4cbcf6aa5234433c3f5d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+</head>
+<body>
+    
+    
+<div style="position: fixed; top: 10px; left: 10px; z-index: 1000; background-color: white; 
+            padding: 8px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">
+    🗺️ Iranian Languages of Asia — <span style="color: #2c3e50;">OFFLINE MODE (Info Cached)</span>
+</div>
+    
+<div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; background-color: white;
+            padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-family: Arial, sans-serif; font-size: 11px; max-width: 180px;">
+    <b>📖 Language Groups</b><br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:red; border-radius:50%;"></span> Persian<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:blue; border-radius:50%;"></span> Pashto<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:green; border-radius:50%;"></span> Kurdish<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:purple; border-radius:50%;"></span> Balochi<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:orange; border-radius:50%;"></span> Ossetian<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:darkred; border-radius:50%;"></span> Caspian<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:cadetblue; border-radius:50%;"></span> Luri<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:pink; border-radius:50%;"></span> Pamir<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:lightgreen; border-radius:50%;"></span> Talysh/Tati<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:lightblue; border-radius:50%;"></span> Kumzari/Yaghnobi<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:beige; border-radius:50%;"></span> Sivandi<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:darkorange; border-radius:50%;"></span> Parachi<br>
+    <span style="display:inline-block; width:12px; height:12px; background-color:gray; border-radius:50%;"></span> Ormuri/Gorani<br>
+    <hr style="margin:5px 0;">
+    <i>📡 OFFLINE MODE - Info cached</i>
+</div>
+    
+<div style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; 
+            background-color: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 6px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-family: Arial, sans-serif; 
+            font-size: 11px; color: white; white-space: nowrap;">
+    🗺️ Created by Milad Shariatmadari
+</div>
+    
+            <div class="folium-map" id="map_4dd148d7200f4cbcf6aa5234433c3f5d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4dd148d7200f4cbcf6aa5234433c3f5d = L.map(
+                "map_4dd148d7200f4cbcf6aa5234433c3f5d",
+                {
+                    center: [35.0, 55.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+
+            
+
+        
+    
+            var tile_layer_b37d21dd6105d944e061f95c49033647 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b37d21dd6105d944e061f95c49033647.addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+            var circle_marker_ff0ccb9c4450662c679f1418187aab47 = L.circleMarker(
+                [32.4279, 53.688],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_0982b6a62b575b071b63a01c3253ba02 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6c7b9d862d87b982fab9d2800a38c4e9 = $(`<div id="html_6c7b9d862d87b982fab9d2800a38c4e9" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:red; margin:0 0 5px 0;">             🗣️ Persian (Farsi)         </h4>         <b>📍 Region:</b> Iran<br>         <b>👥 Speakers:</b> ~70 million native, ~110 million total<br>         <b>✍️ Script:</b> Perso-Arabic, Cyrillic (Tajik)<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Persian (Farsi) is a Western Iranian language spoken primarily in Iran, Afghanistan (Dari), and Tajikistan (Tajik). It has about 70 million native speakers and 110 million total speakers. Persian uses the Perso-Arabic script in Iran and Afghanistan, and Cyrillic in Tajikistan.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Persian_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Persian_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_0982b6a62b575b071b63a01c3253ba02.setContent(html_6c7b9d862d87b982fab9d2800a38c4e9);
+            
+        
+
+        circle_marker_ff0ccb9c4450662c679f1418187aab47.bindPopup(popup_0982b6a62b575b071b63a01c3253ba02)
+        ;
+
+        
+    
+    
+            circle_marker_ff0ccb9c4450662c679f1418187aab47.bindTooltip(
+                `<div>
+                     Persian (Farsi) — Iran (~70 million native, ~110 million total)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_22a80ab214a82590dfcc135cb06b8243 = L.circleMarker(
+                [33.9391, 67.71],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_70adbe53ed96f63f831239e766024fb4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a7dc7855c141a964bd4ed53fdc544e77 = $(`<div id="html_a7dc7855c141a964bd4ed53fdc544e77" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:red; margin:0 0 5px 0;">             🗣️ Dari (Persian)         </h4>         <b>📍 Region:</b> Afghanistan<br>         <b>👥 Speakers:</b> ~9.6 million in Afghanistan<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Dari is the variety of Persian spoken in Afghanistan. It is one of the two official languages of Afghanistan (along with Pashto). Dari has about 9.6 million speakers in Afghanistan.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Dari" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Dari</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_70adbe53ed96f63f831239e766024fb4.setContent(html_a7dc7855c141a964bd4ed53fdc544e77);
+            
+        
+
+        circle_marker_22a80ab214a82590dfcc135cb06b8243.bindPopup(popup_70adbe53ed96f63f831239e766024fb4)
+        ;
+
+        
+    
+    
+            circle_marker_22a80ab214a82590dfcc135cb06b8243.bindTooltip(
+                `<div>
+                     Dari (Persian) — Afghanistan (~9.6 million in Afghanistan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2a055b0747d2d8cae963906cfe11fbb4 = L.circleMarker(
+                [38.861, 71.2761],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_5e335076b95eb4ba184a6ce99039f348 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_96d8f9abf0cafd47b6637b56c6d99f09 = $(`<div id="html_96d8f9abf0cafd47b6637b56c6d99f09" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:red; margin:0 0 5px 0;">             🗣️ Tajik (Persian)         </h4>         <b>📍 Region:</b> Tajikistan<br>         <b>👥 Speakers:</b> ~8 million<br>         <b>✍️ Script:</b> Cyrillic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Tajik is the variety of Persian spoken in Tajikistan and Uzbekistan. It is written in the Cyrillic script and has about 8 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Tajik_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Tajik_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_5e335076b95eb4ba184a6ce99039f348.setContent(html_96d8f9abf0cafd47b6637b56c6d99f09);
+            
+        
+
+        circle_marker_2a055b0747d2d8cae963906cfe11fbb4.bindPopup(popup_5e335076b95eb4ba184a6ce99039f348)
+        ;
+
+        
+    
+    
+            circle_marker_2a055b0747d2d8cae963906cfe11fbb4.bindTooltip(
+                `<div>
+                     Tajik (Persian) — Tajikistan (~8 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5166f8b4fa00d3ca034c5d6c99120d91 = L.circleMarker(
+                [33.0, 68.0],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_f0f2892c3b5e56f1e33f620450095845 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9f854535f913d040270b1f09f09e2eaa = $(`<div id="html_9f854535f913d040270b1f09f09e2eaa" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:blue; margin:0 0 5px 0;">             🗣️ Pashto         </h4>         <b>📍 Region:</b> Afghanistan<br>         <b>👥 Speakers:</b> ~40-60 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Pashto is an Eastern Iranian language spoken by the Pashtun people in Afghanistan and Pakistan. It has about 40-60 million speakers. Pashto is one of the two official languages of Afghanistan.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Pashto" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Pashto</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_f0f2892c3b5e56f1e33f620450095845.setContent(html_9f854535f913d040270b1f09f09e2eaa);
+            
+        
+
+        circle_marker_5166f8b4fa00d3ca034c5d6c99120d91.bindPopup(popup_f0f2892c3b5e56f1e33f620450095845)
+        ;
+
+        
+    
+    
+            circle_marker_5166f8b4fa00d3ca034c5d6c99120d91.bindTooltip(
+                `<div>
+                     Pashto — Afghanistan (~40-60 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1b6bd46caffa9c2eeb8dddac77ab56c = L.circleMarker(
+                [34.0, 71.5],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_ced6b3a8c6d4fc62f63c67f7ac4422bb = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_23f5655508718b03ff5002b163b6a7e3 = $(`<div id="html_23f5655508718b03ff5002b163b6a7e3" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:blue; margin:0 0 5px 0;">             🗣️ Pashto         </h4>         <b>📍 Region:</b> Pakistan<br>         <b>👥 Speakers:</b> ~40-60 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Pashto is an Eastern Iranian language spoken by the Pashtun people in Afghanistan and Pakistan. It has about 40-60 million speakers. Pashto is one of the two official languages of Afghanistan.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Pashto" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Pashto</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_ced6b3a8c6d4fc62f63c67f7ac4422bb.setContent(html_23f5655508718b03ff5002b163b6a7e3);
+            
+        
+
+        circle_marker_a1b6bd46caffa9c2eeb8dddac77ab56c.bindPopup(popup_ced6b3a8c6d4fc62f63c67f7ac4422bb)
+        ;
+
+        
+    
+    
+            circle_marker_a1b6bd46caffa9c2eeb8dddac77ab56c.bindTooltip(
+                `<div>
+                     Pashto — Pakistan (~40-60 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1e0554fc09bb0d4c0dcb9c6d6cf0b88e = L.circleMarker(
+                [37.5, 42.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_29a57070283f0050449c8e4915a5b151 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1d64f3d6035ee4979dc4211ef5e1a466 = $(`<div id="html_1d64f3d6035ee4979dc4211ef5e1a466" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:green; margin:0 0 5px 0;">             🗣️ Kurmanji         </h4>         <b>📍 Region:</b> Turkey / Syria / Iraq / Iran<br>         <b>👥 Speakers:</b> ~15-20 million<br>         <b>✍️ Script:</b> Latin (Turkey), Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Kurmanji (Northern Kurdish) is the largest dialect of Kurdish, spoken by about 15-20 million people primarily in Turkey, Syria, northern Iraq, and northwestern Iran.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Kurmanji" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Kurmanji</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_29a57070283f0050449c8e4915a5b151.setContent(html_1d64f3d6035ee4979dc4211ef5e1a466);
+            
+        
+
+        circle_marker_1e0554fc09bb0d4c0dcb9c6d6cf0b88e.bindPopup(popup_29a57070283f0050449c8e4915a5b151)
+        ;
+
+        
+    
+    
+            circle_marker_1e0554fc09bb0d4c0dcb9c6d6cf0b88e.bindTooltip(
+                `<div>
+                     Kurmanji — Turkey / Syria / Iraq / Iran (~15-20 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a86ac772e1c6c44d7b6bd10a999a6bcf = L.circleMarker(
+                [35.5, 45.5],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_621957b304a2fac2f138ce602025e6a4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f42808d19c260f34a8c472075e65356a = $(`<div id="html_f42808d19c260f34a8c472075e65356a" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:green; margin:0 0 5px 0;">             🗣️ Sorani         </h4>         <b>📍 Region:</b> Iraq / Iran<br>         <b>👥 Speakers:</b> ~6-8 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Sorani (Central Kurdish) is spoken by about 6-8 million people in Iraqi Kurdistan and Iranian Kurdistan. It is written in the Perso-Arabic script.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Sorani" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Sorani</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_621957b304a2fac2f138ce602025e6a4.setContent(html_f42808d19c260f34a8c472075e65356a);
+            
+        
+
+        circle_marker_a86ac772e1c6c44d7b6bd10a999a6bcf.bindPopup(popup_621957b304a2fac2f138ce602025e6a4)
+        ;
+
+        
+    
+    
+            circle_marker_a86ac772e1c6c44d7b6bd10a999a6bcf.bindTooltip(
+                `<div>
+                     Sorani — Iraq / Iran (~6-8 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ec723751f4ea835ebdd2dcf77b0b555 = L.circleMarker(
+                [34.3, 47.1],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_550131dbc7c6e59c5500c244571ea889 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1bc76a022f8f74864e919ca361024ce1 = $(`<div id="html_1bc76a022f8f74864e919ca361024ce1" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:green; margin:0 0 5px 0;">             🗣️ Southern Kurdish         </h4>         <b>📍 Region:</b> Iran<br>         <b>👥 Speakers:</b> ~3 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Southern Kurdish is spoken by about 3 million people in western Iran and eastern Iraq.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Southern_Kurdish" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Southern_Kurdish</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_550131dbc7c6e59c5500c244571ea889.setContent(html_1bc76a022f8f74864e919ca361024ce1);
+            
+        
+
+        circle_marker_4ec723751f4ea835ebdd2dcf77b0b555.bindPopup(popup_550131dbc7c6e59c5500c244571ea889)
+        ;
+
+        
+    
+    
+            circle_marker_4ec723751f4ea835ebdd2dcf77b0b555.bindTooltip(
+                `<div>
+                     Southern Kurdish — Iran (~3 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bd1bd0bce26a6a0a3b7672c510227d26 = L.circleMarker(
+                [27.5, 60.5],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_834a117c1eabdf51b71491cb17ae3758 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5045a5cd9117b24219c00f5eb0b88a2c = $(`<div id="html_5045a5cd9117b24219c00f5eb0b88a2c" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:purple; margin:0 0 5px 0;">             🗣️ Balochi         </h4>         <b>📍 Region:</b> Iran<br>         <b>👥 Speakers:</b> ~8-10 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Balochi is a Northwestern Iranian language spoken by the Baloch people in Iran, Pakistan, and Afghanistan. It has about 8-10 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Balochi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Balochi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_834a117c1eabdf51b71491cb17ae3758.setContent(html_5045a5cd9117b24219c00f5eb0b88a2c);
+            
+        
+
+        circle_marker_bd1bd0bce26a6a0a3b7672c510227d26.bindPopup(popup_834a117c1eabdf51b71491cb17ae3758)
+        ;
+
+        
+    
+    
+            circle_marker_bd1bd0bce26a6a0a3b7672c510227d26.bindTooltip(
+                `<div>
+                     Balochi — Iran (~8-10 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2787ddc17771d54a2d3e433f9cf60b35 = L.circleMarker(
+                [28.0, 66.0],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_09bbe07d1264ab75d2be17b3277db6bd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b5e1e2f106a868782e8f37682e6c3806 = $(`<div id="html_b5e1e2f106a868782e8f37682e6c3806" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:purple; margin:0 0 5px 0;">             🗣️ Balochi         </h4>         <b>📍 Region:</b> Pakistan<br>         <b>👥 Speakers:</b> ~8-10 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Balochi is a Northwestern Iranian language spoken by the Baloch people in Iran, Pakistan, and Afghanistan. It has about 8-10 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Balochi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Balochi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_09bbe07d1264ab75d2be17b3277db6bd.setContent(html_b5e1e2f106a868782e8f37682e6c3806);
+            
+        
+
+        circle_marker_2787ddc17771d54a2d3e433f9cf60b35.bindPopup(popup_09bbe07d1264ab75d2be17b3277db6bd)
+        ;
+
+        
+    
+    
+            circle_marker_2787ddc17771d54a2d3e433f9cf60b35.bindTooltip(
+                `<div>
+                     Balochi — Pakistan (~8-10 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7c6d9d068eb5dbc91a68c4b51756a61a = L.circleMarker(
+                [31.0, 62.0],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_4f654a515b67909b7252f084c23b10f8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ecc6f7ed463fd44be15544493bb11b65 = $(`<div id="html_ecc6f7ed463fd44be15544493bb11b65" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:purple; margin:0 0 5px 0;">             🗣️ Balochi         </h4>         <b>📍 Region:</b> Afghanistan<br>         <b>👥 Speakers:</b> ~8-10 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Balochi is a Northwestern Iranian language spoken by the Baloch people in Iran, Pakistan, and Afghanistan. It has about 8-10 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Balochi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Balochi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_4f654a515b67909b7252f084c23b10f8.setContent(html_ecc6f7ed463fd44be15544493bb11b65);
+            
+        
+
+        circle_marker_7c6d9d068eb5dbc91a68c4b51756a61a.bindPopup(popup_4f654a515b67909b7252f084c23b10f8)
+        ;
+
+        
+    
+    
+            circle_marker_7c6d9d068eb5dbc91a68c4b51756a61a.bindTooltip(
+                `<div>
+                     Balochi — Afghanistan (~8-10 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_498f96a883e2a203f68abf37d35d4d2f = L.circleMarker(
+                [36.3, 49.6],
+                {"bubblingMouseEvents": true, "color": "lightgreen", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_1c12c083adcf3f3da7461b19810dfc5c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0a278cb76cc320497bdba0f256c4721f = $(`<div id="html_0a278cb76cc320497bdba0f256c4721f" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:lightgreen; margin:0 0 5px 0;">             🗣️ Tati (Takestani)         </h4>         <b>📍 Region:</b> Iran (Takestan, Khalkhal, Tarom)<br>         <b>👥 Speakers:</b> ~300,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Tati is a Northwestern Iranian language spoken in northwestern Iran. It is closely related to Talysh and is considered a remnant of Old Azeri. About 300,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Tati_language_(Iran)" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Tati_language_(Iran)</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_1c12c083adcf3f3da7461b19810dfc5c.setContent(html_0a278cb76cc320497bdba0f256c4721f);
+            
+        
+
+        circle_marker_498f96a883e2a203f68abf37d35d4d2f.bindPopup(popup_1c12c083adcf3f3da7461b19810dfc5c)
+        ;
+
+        
+    
+    
+            circle_marker_498f96a883e2a203f68abf37d35d4d2f.bindTooltip(
+                `<div>
+                     Tati (Takestani) — Iran (Takestan, Khalkhal, Tarom) (~300,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dab07e683baa8be5e47242a77c3e034d = L.circleMarker(
+                [38.2, 45.7],
+                {"bubblingMouseEvents": true, "color": "lightgreen", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_0439ad4f209e7b5313230df7a9bc3ad5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c5ab0e568a8dd0f120ebb62af0bf32be = $(`<div id="html_c5ab0e568a8dd0f120ebb62af0bf32be" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:lightgreen; margin:0 0 5px 0;">             🗣️ Tati (Harzandi)         </h4>         <b>📍 Region:</b> Iran (Harzand, Kalasur)<br>         <b>👥 Speakers:</b> ~50,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Harzandi is a dialect of Tati spoken in East Azerbaijan province, Iran. It preserves many features of Old Azeri.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Tati_language_(Iran)" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Tati_language_(Iran)</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_0439ad4f209e7b5313230df7a9bc3ad5.setContent(html_c5ab0e568a8dd0f120ebb62af0bf32be);
+            
+        
+
+        circle_marker_dab07e683baa8be5e47242a77c3e034d.bindPopup(popup_0439ad4f209e7b5313230df7a9bc3ad5)
+        ;
+
+        
+    
+    
+            circle_marker_dab07e683baa8be5e47242a77c3e034d.bindTooltip(
+                `<div>
+                     Tati (Harzandi) — Iran (Harzand, Kalasur) (~50,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bd9f6da82fe996a372ff14f9f8291b43 = L.circleMarker(
+                [30.0, 52.9],
+                {"bubblingMouseEvents": true, "color": "beige", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "beige", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_44bc3c3f51cf6fafc4450b784ac2862d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c2e295eb19170db96a3f6c842a2ba807 = $(`<div id="html_c2e295eb19170db96a3f6c842a2ba807" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:beige; margin:0 0 5px 0;">             🗣️ Sivandi         </h4>         <b>📍 Region:</b> Iran (Sivand, Fars Province)<br>         <b>👥 Speakers:</b> ~7,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Sivandi is a Northwestern Iranian language spoken in the village of Sivand in Fars Province, Iran. It has about 7,000 speakers and is considered endangered.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Sivandi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Sivandi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_44bc3c3f51cf6fafc4450b784ac2862d.setContent(html_c2e295eb19170db96a3f6c842a2ba807);
+            
+        
+
+        circle_marker_bd9f6da82fe996a372ff14f9f8291b43.bindPopup(popup_44bc3c3f51cf6fafc4450b784ac2862d)
+        ;
+
+        
+    
+    
+            circle_marker_bd9f6da82fe996a372ff14f9f8291b43.bindTooltip(
+                `<div>
+                     Sivandi — Iran (Sivand, Fars Province) (~7,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6b5fc3dbc8c7ffee8a8dbd1616d4c757 = L.circleMarker(
+                [26.1, 56.2],
+                {"bubblingMouseEvents": true, "color": "lightblue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightblue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_232b75d0e734757c221d0687cb1aca12 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f5fd87e12f35a9534a3024f80f97f245 = $(`<div id="html_f5fd87e12f35a9534a3024f80f97f245" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:lightblue; margin:0 0 5px 0;">             🗣️ Kumzari         </h4>         <b>📍 Region:</b> Oman (Musandam Peninsula)<br>         <b>👥 Speakers:</b> ~4,000<br>         <b>✍️ Script:</b> Latin, Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Kumzari is a Southwestern Iranian language spoken in the Musandam Peninsula of Oman. It is the only Iranian language spoken on the Arabian Peninsula. About 4,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Kumzari_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Kumzari_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_232b75d0e734757c221d0687cb1aca12.setContent(html_f5fd87e12f35a9534a3024f80f97f245);
+            
+        
+
+        circle_marker_6b5fc3dbc8c7ffee8a8dbd1616d4c757.bindPopup(popup_232b75d0e734757c221d0687cb1aca12)
+        ;
+
+        
+    
+    
+            circle_marker_6b5fc3dbc8c7ffee8a8dbd1616d4c757.bindTooltip(
+                `<div>
+                     Kumzari — Oman (Musandam Peninsula) (~4,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2c4daed9ed86de9b9901a9ac334237ca = L.circleMarker(
+                [37.5, 71.5],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_2e7326e9462b09192df8180f639ab3a9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_46847da2c2c3879b840dae4c65923e5d = $(`<div id="html_46847da2c2c3879b840dae4c65923e5d" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:pink; margin:0 0 5px 0;">             🗣️ Shughni         </h4>         <b>📍 Region:</b> Tajikistan (Gorno-Badakhshan)<br>         <b>👥 Speakers:</b> ~80,000<br>         <b>✍️ Script:</b> Cyrillic, Latin<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Shughni is a Pamir language of the Eastern Iranian branch, spoken in the Pamir Mountains of Tajikistan and Afghanistan. About 80,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Shughni_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Shughni_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_2e7326e9462b09192df8180f639ab3a9.setContent(html_46847da2c2c3879b840dae4c65923e5d);
+            
+        
+
+        circle_marker_2c4daed9ed86de9b9901a9ac334237ca.bindPopup(popup_2e7326e9462b09192df8180f639ab3a9)
+        ;
+
+        
+    
+    
+            circle_marker_2c4daed9ed86de9b9901a9ac334237ca.bindTooltip(
+                `<div>
+                     Shughni — Tajikistan (Gorno-Badakhshan) (~80,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ab66bcc48d7e85c8eab83978e591c56 = L.circleMarker(
+                [37.0, 70.5],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_fd2d28b82d2c244e4f7e420f861e92d4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e3b628696a1afa93faff126f28e3ec4e = $(`<div id="html_e3b628696a1afa93faff126f28e3ec4e" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:pink; margin:0 0 5px 0;">             🗣️ Shughni         </h4>         <b>📍 Region:</b> Afghanistan (Badakhshan)<br>         <b>👥 Speakers:</b> ~80,000<br>         <b>✍️ Script:</b> Cyrillic, Latin<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Shughni is a Pamir language of the Eastern Iranian branch, spoken in the Pamir Mountains of Tajikistan and Afghanistan. About 80,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Shughni_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Shughni_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_fd2d28b82d2c244e4f7e420f861e92d4.setContent(html_e3b628696a1afa93faff126f28e3ec4e);
+            
+        
+
+        circle_marker_7ab66bcc48d7e85c8eab83978e591c56.bindPopup(popup_fd2d28b82d2c244e4f7e420f861e92d4)
+        ;
+
+        
+    
+    
+            circle_marker_7ab66bcc48d7e85c8eab83978e591c56.bindTooltip(
+                `<div>
+                     Shughni — Afghanistan (Badakhshan) (~80,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ea535d8493c67576cd4ace47884b3f6 = L.circleMarker(
+                [32.7, 69.0],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_9d93d917eb1401d718f3645af8bf4509 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_60246fa14d81681dfdedb497143c063c = $(`<div id="html_60246fa14d81681dfdedb497143c063c" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:gray; margin:0 0 5px 0;">             🗣️ Ormuri         </h4>         <b>📍 Region:</b> Afghanistan (Kaniguram, Logar)<br>         <b>👥 Speakers:</b> ~1,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Ormuri (also known as Baraki) is an Eastern Iranian language spoken in Kaniguram, Afghanistan and Waziristan, Pakistan. About 1,000 speakers, critically endangered.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Ormuri" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Ormuri</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_9d93d917eb1401d718f3645af8bf4509.setContent(html_60246fa14d81681dfdedb497143c063c);
+            
+        
+
+        circle_marker_4ea535d8493c67576cd4ace47884b3f6.bindPopup(popup_9d93d917eb1401d718f3645af8bf4509)
+        ;
+
+        
+    
+    
+            circle_marker_4ea535d8493c67576cd4ace47884b3f6.bindTooltip(
+                `<div>
+                     Ormuri — Afghanistan (Kaniguram, Logar) (~1,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bcecf42496eec37714c87abe341ec100 = L.circleMarker(
+                [32.5, 70.0],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_cb8562aa6f225bad15926628ee06c2ad = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_edb3b82b6f181970f9258b98698f81ad = $(`<div id="html_edb3b82b6f181970f9258b98698f81ad" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:gray; margin:0 0 5px 0;">             🗣️ Ormuri         </h4>         <b>📍 Region:</b> Pakistan (Waziristan)<br>         <b>👥 Speakers:</b> ~1,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Ormuri (also known as Baraki) is an Eastern Iranian language spoken in Kaniguram, Afghanistan and Waziristan, Pakistan. About 1,000 speakers, critically endangered.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Ormuri" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Ormuri</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_cb8562aa6f225bad15926628ee06c2ad.setContent(html_edb3b82b6f181970f9258b98698f81ad);
+            
+        
+
+        circle_marker_bcecf42496eec37714c87abe341ec100.bindPopup(popup_cb8562aa6f225bad15926628ee06c2ad)
+        ;
+
+        
+    
+    
+            circle_marker_bcecf42496eec37714c87abe341ec100.bindTooltip(
+                `<div>
+                     Ormuri — Pakistan (Waziristan) (~1,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2629ca7b8635e846b90e53dc8d757197 = L.circleMarker(
+                [35.0, 69.5],
+                {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkorange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_1c613bbe98762261e712fb1f5b89a3ec = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b99e1a63a783d2daf5863723214b8873 = $(`<div id="html_b99e1a63a783d2daf5863723214b8873" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:darkorange; margin:0 0 5px 0;">             🗣️ Parachi         </h4>         <b>📍 Region:</b> Afghanistan (Hindu Kush, Nijrab)<br>         <b>👥 Speakers:</b> ~3,500-6,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Parachi is an Eastern Iranian language spoken in the Hindu Kush mountains of Afghanistan. About 3,500-6,000 speakers, endangered.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Parachi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Parachi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_1c613bbe98762261e712fb1f5b89a3ec.setContent(html_b99e1a63a783d2daf5863723214b8873);
+            
+        
+
+        circle_marker_2629ca7b8635e846b90e53dc8d757197.bindPopup(popup_1c613bbe98762261e712fb1f5b89a3ec)
+        ;
+
+        
+    
+    
+            circle_marker_2629ca7b8635e846b90e53dc8d757197.bindTooltip(
+                `<div>
+                     Parachi — Afghanistan (Hindu Kush, Nijrab) (~3,500-6,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_559645081bc7a8b0681d84925c67ae1c = L.circleMarker(
+                [34.6, 69.0],
+                {"bubblingMouseEvents": true, "color": "darkorange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkorange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_0715a69334fc17292446b27da75cb5d0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_87b26a680433771e59226b629f4ea1d3 = $(`<div id="html_87b26a680433771e59226b629f4ea1d3" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:darkorange; margin:0 0 5px 0;">             🗣️ Parachi         </h4>         <b>📍 Region:</b> Afghanistan (Paghman, Kabul)<br>         <b>👥 Speakers:</b> ~3,500-6,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Parachi is an Eastern Iranian language spoken in the Hindu Kush mountains of Afghanistan. About 3,500-6,000 speakers, endangered.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Parachi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Parachi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_0715a69334fc17292446b27da75cb5d0.setContent(html_87b26a680433771e59226b629f4ea1d3);
+            
+        
+
+        circle_marker_559645081bc7a8b0681d84925c67ae1c.bindPopup(popup_0715a69334fc17292446b27da75cb5d0)
+        ;
+
+        
+    
+    
+            circle_marker_559645081bc7a8b0681d84925c67ae1c.bindTooltip(
+                `<div>
+                     Parachi — Afghanistan (Paghman, Kabul) (~3,500-6,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f49fb21e018ff0bdfd7eaa22a155aa7 = L.circleMarker(
+                [42.8, 44.2],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_29f739b483c81270472fe49074b45188 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c53f82adeb0dad251ec65987e1292132 = $(`<div id="html_c53f82adeb0dad251ec65987e1292132" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:orange; margin:0 0 5px 0;">             🗣️ Ossetian         </h4>         <b>📍 Region:</b> Ossetia<br>         <b>👥 Speakers:</b> ~600,000<br>         <b>✍️ Script:</b> Cyrillic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Ossetian is an Eastern Iranian language spoken in the Caucasus region, primarily in North and South Ossetia. It has about 600,000 speakers and uses the Cyrillic script.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Ossetian_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Ossetian_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_29f739b483c81270472fe49074b45188.setContent(html_c53f82adeb0dad251ec65987e1292132);
+            
+        
+
+        circle_marker_8f49fb21e018ff0bdfd7eaa22a155aa7.bindPopup(popup_29f739b483c81270472fe49074b45188)
+        ;
+
+        
+    
+    
+            circle_marker_8f49fb21e018ff0bdfd7eaa22a155aa7.bindTooltip(
+                `<div>
+                     Ossetian — Ossetia (~600,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b8ea85ac5ec7b8ad04b82743c1eff00b = L.circleMarker(
+                [36.5, 52.0],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_e3d902652011f65c8ce3e62c4475cc5f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_49f5736515740786e031740293363926 = $(`<div id="html_49f5736515740786e031740293363926" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:darkred; margin:0 0 5px 0;">             🗣️ Mazanderani         </h4>         <b>📍 Region:</b> Mazandaran<br>         <b>👥 Speakers:</b> ~2-3 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Mazanderani (also known as Tabari) is a Caspian Iranian language spoken in Mazandaran province, Iran. About 2-3 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Mazanderani_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Mazanderani_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_e3d902652011f65c8ce3e62c4475cc5f.setContent(html_49f5736515740786e031740293363926);
+            
+        
+
+        circle_marker_b8ea85ac5ec7b8ad04b82743c1eff00b.bindPopup(popup_e3d902652011f65c8ce3e62c4475cc5f)
+        ;
+
+        
+    
+    
+            circle_marker_b8ea85ac5ec7b8ad04b82743c1eff00b.bindTooltip(
+                `<div>
+                     Mazanderani — Mazandaran (~2-3 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e196010def488966b3e316a7a995433f = L.circleMarker(
+                [37.2, 49.6],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_af7d725150c525eb82e0765c2a5254b1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c08e37bee21b029078f70b798bf720f8 = $(`<div id="html_c08e37bee21b029078f70b798bf720f8" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:darkred; margin:0 0 5px 0;">             🗣️ Gilaki         </h4>         <b>📍 Region:</b> Gilan<br>         <b>👥 Speakers:</b> ~2.5 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Gilaki is a Caspian Iranian language spoken in Gilan province, Iran. About 2.5 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Gilaki_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Gilaki_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_af7d725150c525eb82e0765c2a5254b1.setContent(html_c08e37bee21b029078f70b798bf720f8);
+            
+        
+
+        circle_marker_e196010def488966b3e316a7a995433f.bindPopup(popup_af7d725150c525eb82e0765c2a5254b1)
+        ;
+
+        
+    
+    
+            circle_marker_e196010def488966b3e316a7a995433f.bindTooltip(
+                `<div>
+                     Gilaki — Gilan (~2.5 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c3e54e77b4a74a915b928c603c230516 = L.circleMarker(
+                [33.5, 48.5],
+                {"bubblingMouseEvents": true, "color": "cadetblue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "cadetblue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_e4cbfb2a0ceb82972721cb96a35e2239 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_91853a7b6e48f23b8f23884a958dc546 = $(`<div id="html_91853a7b6e48f23b8f23884a958dc546" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:cadetblue; margin:0 0 5px 0;">             🗣️ Luri         </h4>         <b>📍 Region:</b> Lorestan<br>         <b>👥 Speakers:</b> ~4-5 million<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Luri is a Southwestern Iranian language spoken by the Lurs in western Iran. About 4-5 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Luri_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Luri_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_e4cbfb2a0ceb82972721cb96a35e2239.setContent(html_91853a7b6e48f23b8f23884a958dc546);
+            
+        
+
+        circle_marker_c3e54e77b4a74a915b928c603c230516.bindPopup(popup_e4cbfb2a0ceb82972721cb96a35e2239)
+        ;
+
+        
+    
+    
+            circle_marker_c3e54e77b4a74a915b928c603c230516.bindTooltip(
+                `<div>
+                     Luri — Lorestan (~4-5 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dc223bce186a59a57b399a3ae03576b7 = L.circleMarker(
+                [38.4, 48.5],
+                {"bubblingMouseEvents": true, "color": "lightgreen", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightgreen", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_3cfa35c7d28a6e10a28dc4018fc505d7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_bfa9ade51c98d0fe1826599ea1bec0d0 = $(`<div id="html_bfa9ade51c98d0fe1826599ea1bec0d0" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:lightgreen; margin:0 0 5px 0;">             🗣️ Talysh         </h4>         <b>📍 Region:</b> Iran / Azerbaijan<br>         <b>👥 Speakers:</b> ~200,000-500,000<br>         <b>✍️ Script:</b> Perso-Arabic, Latin<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Talysh is a Northwestern Iranian language spoken in the Caspian Sea region between Iran and Azerbaijan. About 200,000-500,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Talysh_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Talysh_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_3cfa35c7d28a6e10a28dc4018fc505d7.setContent(html_bfa9ade51c98d0fe1826599ea1bec0d0);
+            
+        
+
+        circle_marker_dc223bce186a59a57b399a3ae03576b7.bindPopup(popup_3cfa35c7d28a6e10a28dc4018fc505d7)
+        ;
+
+        
+    
+    
+            circle_marker_dc223bce186a59a57b399a3ae03576b7.bindTooltip(
+                `<div>
+                     Talysh — Iran / Azerbaijan (~200,000-500,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7007c010fea287674d0a3381f077e4b3 = L.circleMarker(
+                [37.5, 72.0],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_b3e1cece34fe3b7e832257ae19bc75e7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_496b8233d9b4aa852d7f4e95b2a7aa45 = $(`<div id="html_496b8233d9b4aa852d7f4e95b2a7aa45" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:pink; margin:0 0 5px 0;">             🗣️ Wakhi         </h4>         <b>📍 Region:</b> Pamir Region<br>         <b>👥 Speakers:</b> ~50,000-60,000<br>         <b>✍️ Script:</b> Cyrillic, Latin, Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Wakhi is an Eastern Iranian language spoken in the Wakhan Corridor of Afghanistan, Tajikistan, Pakistan, and China. About 50,000-60,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Wakhi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Wakhi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_b3e1cece34fe3b7e832257ae19bc75e7.setContent(html_496b8233d9b4aa852d7f4e95b2a7aa45);
+            
+        
+
+        circle_marker_7007c010fea287674d0a3381f077e4b3.bindPopup(popup_b3e1cece34fe3b7e832257ae19bc75e7)
+        ;
+
+        
+    
+    
+            circle_marker_7007c010fea287674d0a3381f077e4b3.bindTooltip(
+                `<div>
+                     Wakhi — Pamir Region (~50,000-60,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a2ffbceaba09343ccaabf9448e30819f = L.circleMarker(
+                [39.2, 68.5],
+                {"bubblingMouseEvents": true, "color": "lightblue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lightblue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_09ed443427bf63ea433907eb5f42bd62 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_413cb4b5a34569a464f114800bd19b18 = $(`<div id="html_413cb4b5a34569a464f114800bd19b18" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:lightblue; margin:0 0 5px 0;">             🗣️ Yaghnobi         </h4>         <b>📍 Region:</b> Tajikistan<br>         <b>👥 Speakers:</b> ~12,000<br>         <b>✍️ Script:</b> Cyrillic, Latin<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Yaghnobi is an Eastern Iranian language spoken in the Zarafshan Valley of Tajikistan. It is a descendant of Sogdian. About 12,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Yaghnobi_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Yaghnobi_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_09ed443427bf63ea433907eb5f42bd62.setContent(html_413cb4b5a34569a464f114800bd19b18);
+            
+        
+
+        circle_marker_a2ffbceaba09343ccaabf9448e30819f.bindPopup(popup_09ed443427bf63ea433907eb5f42bd62)
+        ;
+
+        
+    
+    
+            circle_marker_a2ffbceaba09343ccaabf9448e30819f.bindTooltip(
+                `<div>
+                     Yaghnobi — Tajikistan (~12,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cdb726dd484e171d37ceae61454f7069 = L.circleMarker(
+                [38.7, 39.8],
+                {"bubblingMouseEvents": true, "color": "darkpurple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkpurple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_9138af7f1e80bfdd7f5085b21ced0429 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_fc097ff59b652215288c2301c0465eaa = $(`<div id="html_fc097ff59b652215288c2301c0465eaa" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:darkpurple; margin:0 0 5px 0;">             🗣️ Zazaki         </h4>         <b>📍 Region:</b> Eastern Anatolia<br>         <b>👥 Speakers:</b> ~2-3 million<br>         <b>✍️ Script:</b> Latin<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Zazaki is a Northwestern Iranian language spoken in eastern Turkey. About 2-3 million speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Zaza_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Zaza_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_9138af7f1e80bfdd7f5085b21ced0429.setContent(html_fc097ff59b652215288c2301c0465eaa);
+            
+        
+
+        circle_marker_cdb726dd484e171d37ceae61454f7069.bindPopup(popup_9138af7f1e80bfdd7f5085b21ced0429)
+        ;
+
+        
+    
+    
+            circle_marker_cdb726dd484e171d37ceae61454f7069.bindTooltip(
+                `<div>
+                     Zazaki — Eastern Anatolia (~2-3 million)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cdfa69cae40a0c6e1034bf29701c956f = L.circleMarker(
+                [35.0, 46.0],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_9f1dfb7bdce57f1c4bb50819d82c0091 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1a9a6bacf35e20ef005401c70bbb5eb1 = $(`<div id="html_1a9a6bacf35e20ef005401c70bbb5eb1" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:gray; margin:0 0 5px 0;">             🗣️ Gorani         </h4>         <b>📍 Region:</b> Iran / Iraq<br>         <b>👥 Speakers:</b> ~200,000-300,000<br>         <b>✍️ Script:</b> Perso-Arabic<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Gorani is a Northwestern Iranian language spoken in the Hawraman region of Iran and Iraq. About 200,000-300,000 speakers.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Gorani_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Gorani_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_9f1dfb7bdce57f1c4bb50819d82c0091.setContent(html_1a9a6bacf35e20ef005401c70bbb5eb1);
+            
+        
+
+        circle_marker_cdfa69cae40a0c6e1034bf29701c956f.bindPopup(popup_9f1dfb7bdce57f1c4bb50819d82c0091)
+        ;
+
+        
+    
+    
+            circle_marker_cdfa69cae40a0c6e1034bf29701c956f.bindTooltip(
+                `<div>
+                     Gorani — Iran / Iraq (~200,000-300,000)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6cbd0710f0c7725f838aa5655fd04885 = L.circleMarker(
+                [39.6, 66.9],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "black", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(map_4dd148d7200f4cbcf6aa5234433c3f5d);
+        
+    
+        var popup_6eba73b1299a46293b280899ebe9c99d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_02d76383d4ed1f9d75526d5f6781bad8 = $(`<div id="html_02d76383d4ed1f9d75526d5f6781bad8" style="width: 100.0%; height: 100.0%;">     <div style="font-family: Arial; width:300px; max-height:400px; overflow-y:auto;">         <h4 style="color:black; margin:0 0 5px 0;">             🗣️ Sogdian (historical)         </h4>         <b>📍 Region:</b> Central Asia<br>         <b>👥 Speakers:</b> Extinct (historical)<br>         <b>✍️ Script:</b> Sogdian alphabet, Syriac, Manichaean<br>         <hr style="margin:8px 0;">         <div style="font-size:12px; line-height:1.4;">             <b>📖 Information (Cached):</b><br>             Sogdian was an Eastern Iranian language spoken in Sogdia (modern Uzbekistan, Tajikistan). It is extinct as a spoken language but preserved in Buddhist, Manichaean, and Christian texts.         </div>         <hr style="margin:8px 0;">         <div style="font-size:11px; color:gray;">             🔗 Full article: <a href="https://en.wikipedia.org/wiki/Sogdian_language" target="_blank" style="color:#2c3e50;">https://en.wikipedia.org/wiki/Sogdian_language</a><br>             <i>⚠️ Internet needed for full Wikipedia access</i>         </div>     </div>     </div>`)[0];
+                popup_6eba73b1299a46293b280899ebe9c99d.setContent(html_02d76383d4ed1f9d75526d5f6781bad8);
+            
+        
+
+        circle_marker_6cbd0710f0c7725f838aa5655fd04885.bindPopup(popup_6eba73b1299a46293b280899ebe9c99d)
+        ;
+
+        
+    
+    
+            circle_marker_6cbd0710f0c7725f838aa5655fd04885.bindTooltip(
+                `<div>
+                     Sogdian (historical) — Central Asia (Extinct (historical))
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
